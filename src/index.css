@@ -1,0 +1,97 @@
+/* ========================================
+   1. CONFIGURACIÓN GLOBAL
+======================================== */
+
+/* Aplicamos box-sizing a todos los elementos. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ========================================
+   2. VARIABLES GLOBALES
+======================================== */
+
+:root {
+  /* Colores principales */
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-light: #334155;
+
+  /* Colores de texto */
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+
+  /* Colores de acento */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+
+  /* Colores de estado */
+  --color-error: #f87171;
+  --color-success: #4ade80;
+
+  /* Bordes y sombras */
+  --color-border: #334155;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  /* Radios */
+  --radius-small: 8px;
+  --radius-medium: 14px;
+  --radius-large: 20px;
+}
+
+/* ========================================
+   3. ESTILOS DEL DOCUMENTO
+======================================== */
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+/* ========================================
+   4. ELEMENTOS GENERALES
+======================================== */
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Evitamos márgenes inesperados en imágenes. */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Mejoramos la visibilidad del foco con teclado. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}

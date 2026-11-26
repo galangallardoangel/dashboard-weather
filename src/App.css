@@ -1,0 +1,448 @@
+/* ========================================
+   1. CONTENEDOR PRINCIPAL
+======================================== */
+
+#root {
+  min-height: 100vh;
+}
+
+.dashboard {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+/* ========================================
+   2. CABECERA
+======================================== */
+
+.dashboard-header {
+  margin-bottom: 35px;
+}
+
+.eyebrow {
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.dashboard-header h1 {
+  margin: 10px 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-text);
+}
+
+.dashboard-header p {
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   3. BUSCADOR
+======================================== */
+
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-bar input:focus {
+  border-color: var(--color-primary);
+}
+
+.search-bar input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-bar button {
+  padding: 0 28px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+}
+
+.search-bar button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.search-bar button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mensaje de error del buscador. */
+.search-error {
+  flex-basis: 100%;
+  width: 100%;
+  margin: 0;
+  color: #fca5a5;
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   4. FAVORITOS E HISTORIAL
+======================================== */
+
+.sidebar-sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+/* Tarjetas que contienen favoritos e historial. */
+.side-card {
+  padding: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-heading h2,
+.side-card h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+/* Botón para añadir una ciudad a favoritos. */
+.small-button {
+  padding: 9px 13px;
+  border: none;
+  border-radius: var(--radius-small);
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+}
+
+.small-button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.small-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Lista de ciudades. */
+.city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 15px 0 0;
+  list-style: none;
+}
+
+.city-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-small);
+  background: #27364b;
+}
+
+/* Botones de las ciudades. */
+.city-link,
+.remove-button {
+  border: none;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.city-link {
+  text-align: left;
+  transition:
+    color 0.2s,
+    opacity 0.2s;
+}
+
+.city-link:hover:not(:disabled) {
+  color: #7dd3fc;
+}
+
+.city-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.remove-button {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  color: var(--color-error);
+  transition: opacity 0.2s;
+}
+
+.remove-button:hover {
+  opacity: 0.7;
+}
+
+.empty-message {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   5. TIEMPO ACTUAL
+======================================== */
+
+.current-weather {
+  padding: 35px;
+  margin-bottom: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1e3a5f, #172554);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+
+/* Nombre y ubicación de la ciudad. */
+.current-location span {
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.current-location h2 {
+  margin: 8px 0 25px;
+}
+
+/* Icono y descripción meteorológica. */
+.current-condition {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.weather-icon {
+  font-size: 3rem;
+}
+
+.current-condition p {
+  color: #bfdbfe;
+  font-size: 1.1rem;
+}
+
+/* Temperatura principal. */
+.main-temperature span {
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -5px;
+}
+
+.main-temperature p {
+  margin-top: 0;
+  color: #bfdbfe;
+}
+
+/* Información adicional: humedad, sensación térmica y viento. */
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #ffffff30;
+}
+
+.weather-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.weather-detail span {
+  color: #bfdbfe;
+  font-size: 0.85rem;
+}
+
+.weather-detail strong {
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   6. PREVISIÓN DE SIETE DÍAS
+======================================== */
+
+.forecast {
+  padding: 28px;
+  margin-bottom: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+
+.forecast h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.forecast-day {
+  overflow: hidden;
+  padding: 18px 10px;
+  border-radius: var(--radius-medium);
+  background: #27364b;
+  text-align: center;
+}
+
+.forecast-day h3 {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.forecast-icon {
+  display: block;
+  margin: 15px 0;
+  font-size: 2rem;
+}
+
+.forecast-description {
+  min-height: 32px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.forecast-temperatures {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.forecast-temperatures span {
+  color: var(--color-text-muted);
+}
+
+.forecast-day p:last-child {
+  color: #7dd3fc;
+  font-size: 0.75rem;
+}
+
+/* ========================================
+   7. GRÁFICO DE TEMPERATURAS
+======================================== */
+
+.weather-chart {
+  padding: 28px;
+  margin-bottom: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+
+.weather-chart h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+/* ========================================
+   8. MENSAJES Y ESTADOS
+======================================== */
+
+.message-card,
+.welcome-card {
+  padding: 30px;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+
+.error-message {
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+/* ========================================
+   9. DISEÑO RESPONSIVE
+======================================== */
+
+/* Tablets y pantallas medianas. */
+@media (max-width: 800px) {
+  .forecast-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Móviles y pantallas pequeñas. */
+@media (max-width: 650px) {
+  .dashboard {
+    padding: 30px 0;
+  }
+
+  .sidebar-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar button {
+    padding: 15px;
+  }
+
+  .current-weather {
+    padding: 25px;
+  }
+
+  .weather-details {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forecast,
+  .weather-chart {
+    padding: 20px 14px;
+  }
+}
