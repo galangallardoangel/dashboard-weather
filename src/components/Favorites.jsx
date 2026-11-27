@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-// Acción para consultar el tiempo de una ciudad.
 import { fetchWeatherByCity } from "../features/weather/weatherSlice";
+
+// Dirección del backend.
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function Favorites() {
   const dispatch = useDispatch();
-
-  // Guardamos los favoritos recibidos del backend.
   const [favorites, setFavorites] = useState([]);
 
-  // Consultamos los favoritos al cargar el componente.
+  // Consultar favoritos al cargar el componente.
   useEffect(() => {
-    fetch("http://localhost:3000/api/favorites")
+    fetch(`${API_URL}/api/favorites`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("No se pudieron obtener los favoritos");
@@ -31,15 +31,16 @@ function Favorites() {
   const status = useSelector((state) => state.weather.status);
 
   const isLoading = status === "loading";
+
   const isFavorite = favorites.some(
     (city) => city.toLowerCase() === currentCity?.toLowerCase(),
   );
 
-  // Añade la ciudad actual a favoritos.
+  // Añadir ciudad a favoritos.
   const handleAddFavorite = () => {
     if (!currentCity || isFavorite) return;
 
-    fetch("http://localhost:3000/api/favorites", {
+    fetch(`${API_URL}/api/favorites`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,9 +59,9 @@ function Favorites() {
       });
   };
 
-  // Elimina una ciudad de favoritos.
+  // Eliminar ciudad de favoritos.
   const handleRemoveFavorite = (city) => {
-    fetch(`http://localhost:3000/api/favorites/${encodeURIComponent(city)}`, {
+    fetch(`${API_URL}/api/favorites/${encodeURIComponent(city)}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -75,7 +76,7 @@ function Favorites() {
       });
   };
 
-  // Consulta el tiempo de una ciudad seleccionada.
+  // Consultar el tiempo de una ciudad favorita.
   const handleSelectFavorite = (city) => {
     if (!isLoading) {
       dispatch(fetchWeatherByCity(city));
