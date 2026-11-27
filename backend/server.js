@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Lista temporal de ciudades favoritas.
 let favorites = ["Madrid", "Córdoba"];
@@ -107,5 +107,5 @@ app.put("/api/favorites/:city", (req, res) => {
 
 // Ponemos el servidor en funcionamiento.
 app.listen(PORT, () => {
-  console.log(`Servidor funcionando en http://localhost:${PORT}`);
+  console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
